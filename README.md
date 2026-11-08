@@ -37,7 +37,7 @@ The repositories in this account share one idea: a control strategy should be ju
 Every model depends on the shared **[library](https://github.com/pwr-control/library)** repository: Simscape components, masked Simulink blocks and the C code used by the C-Caller blocks. Set it up once and all the other repositories work out of the box.
 
 1. Clone `library` and add it to the MATLAB path **with subfolders**.
-2. Clone the repository you are interested in and run its setup script (each README says which one).
+2. Clone the repository you are interested in and run the `init_model.m` of the project folder (each README says which one).
 3. Open the Simulink model and simulate.
 
 ```bash
@@ -56,12 +56,18 @@ Requirements: MATLAB with Simulink, Simscape and Simscape Electrical.
 | Area | Repository | What you will find |
 |:--|:--|:--|
 | Foundations | **[library](https://github.com/pwr-control/library)** | Simscape components, masked blocks and C code shared by all the other repositories. Add it to the MATLAB path first. |
+| Foundations | **[modelization-and-control](https://github.com/pwr-control/modelization-and-control)** | The broad collection of simulation benches: converters and drives (AFE, inverters, DAB, CLLC, Vienna, thyristor rectifiers, MPC, PLLs), power systems, IGBT/MOSFET switching dynamics, control-board electronics, magnetics, mechanics and cooling. |
 | DC/DC converters | **[advanced-dcdc-converters](https://github.com/pwr-control/advanced-dcdc-converters)** | Single-phase DAB, three-phase DAB (DAB3) and resonant CLLC for the 250 kW class: Simscape benches, loss and harmonic analysis, resonant-tank optimisation. |
 | Solid-state transformers | **[solid-state-transformers](https://github.com/pwr-control/solid-state-transformers)** | Modular SST made of isolated DC/DC stages (DAB or CLLC) and three-level T-type single-phase inverters, paralleled on the DC side and series-connected on the AC side; synchronised modulators with local time bases. |
+| Grid-tied inverters | **[single-phase-inverter](https://github.com/pwr-control/single-phase-inverter)** | Grid-connected single-phase inverter, 225 kW at 690 V, two-level full bridge and three-level T-type with SiC MOSFET thermal model; FHT/SOGI virtual dq frame, resonant PI current control, system-identification mode. |
 | Power quality | **[left-shunt-unified-power-quality-conditioner](https://github.com/pwr-control/left-shunt-unified-power-quality-conditioner)** | Flipped UPQC (F-UPQC): the shunt converter provides grid services, the series converter stabilises the load voltage. Simscape bench plus the IEEE-format paper deriving model and control. |
-| Grid-forming | **[grid-forming](https://github.com/pwr-control/grid-forming)** | Grid-forming control architectures, starting from how a grid-tied active front end behaves on progressively weaker grids. |
+| Grid-forming | **[grid-forming](https://github.com/pwr-control/grid-forming)** | Grid-forming control architectures, starting from a 250 kW AFE on progressively weaker grids (SCR 20 down to 2) with fault-ride-through and reactive-current tests. |
+| Grid synchronisation | **[advanced-grid-pll](https://github.com/pwr-control/advanced-grid-pll)** | A PLL based on a harmonic-tracker observer, analysed against single-phase and three-phase dq-PLLs. |
 | Electrical machines | **[control-of-electrical-machine](https://github.com/pwr-control/control-of-electrical-machine)** | Sensorless PMSM control: SVPWM with dq PI or model-predictive current control, combined with a back-EMF observer, an EKF or a nonlinear observer. Induction machine to follow. |
 | Adaptive control | **[adaptive-control](https://github.com/pwr-control/adaptive-control)** | Compact MATLAB/Simulink projects: MRAC on an active suspension and on textbook cases, harmonic-tracker analysis for grid signals, a coupled PDE/ODE thermal model. |
+| Hardware &amp; firmware | **[dpt-with-nucleo-G431RB](https://github.com/pwr-control/dpt-with-nucleo-G431RB)** | Double-pulse test on an STM32 Nucleo-G431RB: STM32CubeIDE firmware project and documentation. |
+| Documentation | **[repositories-documentation](https://github.com/pwr-control/repositories-documentation)** | LaTeX sources of the reports that document the models of the other repositories, shorter research notes, notes on standards and the shared pwr-control document template. |
+| Documentation | **[semiconductor-physics-and-devices](https://github.com/pwr-control/semiconductor-physics-and-devices)** | Solid-state physics written up for power-electronics engineers, starting with the reverse recovery of high-voltage diodes. |
 | Teaching | **[lectures-on-advanced-control-engineering](https://github.com/pwr-control/lectures-on-advanced-control-engineering)** | Worked lecture examples (MCI, 2019–2023, still updated): state-space design, observers, Kalman filtering, MPC and adaptive control applied to converters, drives, mechatronics and hydrostatic drivelines. |
 | Teaching | **[advanced-control-engineering](https://github.com/pwr-control/advanced-control-engineering)** | LaTeX sources and compiled PDFs of the two companion textbooks, *Advanced Control Engineering* and *Electromechanical Devices*. |
 
@@ -121,7 +127,7 @@ Requirements: MATLAB with Simulink, Simscape and Simscape Electrical.
 
 ## Technical notes
 
-Self-contained PDF notes (LaTeX) that document the models: derivations, control design and simulation results. They are the reference for the blocks in `library` and for the benches in the repositories above.
+Self-contained PDF notes (LaTeX) that document the models: derivations, control design and simulation results. They are the reference for the blocks in `library` and for the benches in the repositories above. The LaTeX sources, and the newer reports (solid-state transformers and CLLC-DCX stage, grid-forming and grid-following AFE blocks, paralleled grid-forming modules), are maintained in **[repositories-documentation](https://github.com/pwr-control/repositories-documentation)**.
 
 | Topic | Note | Pages |
 |:--|:--|--:|
